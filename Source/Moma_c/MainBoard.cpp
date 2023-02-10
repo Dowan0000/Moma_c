@@ -4,6 +4,7 @@
 #include "MainBoard.h"
 #include "Components/BoxComponent.h"
 #include "Moma_cCharacter.h"
+#include "Blueprint/UserWidget.h"
 
 // Sets default values
 AMainBoard::AMainBoard()
@@ -46,7 +47,10 @@ void AMainBoard::BoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 		Character->CurrentBoard += 1;
 		
 		if (Character->CurrentBoard == Character->DestBoard)
+		{
 			Character->bArrive = true;
+			ArriveAtBoard();
+		}
 	}
 
 	RotationCharacter();
@@ -57,3 +61,19 @@ void AMainBoard::RotationCharacter_Implementation()
 
 }
 
+void AMainBoard::ArriveAtBoard_Implementation()
+{
+	if (ArriveWidgetClass)
+	{
+		ArriveWidget = CreateWidget<UUserWidget>(GetWorld(), ArriveWidgetClass);
+		
+		if (ArriveWidget)
+		{
+			ArriveWidget->AddToViewport();
+
+			FInputModeUIOnly UIMode;
+			GetWorld()->GetFirstPlayerController()->SetInputMode(UIMode);
+			GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(true);
+		}
+	}
+}

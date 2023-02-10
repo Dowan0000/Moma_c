@@ -29,6 +29,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void RotationCharacter();
 
+	UFUNCTION(BlueprintNativeEvent)
+	void ArriveAtBoard();
+
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* Board;
@@ -39,4 +42,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class AMoma_cCharacter* Character;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class UUserWidget> ArriveWidgetClass;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	UUserWidget* ArriveWidget;
 };
