@@ -40,6 +40,7 @@ class AMoma_cCharacter : public ACharacter
 public:
 	AMoma_cCharacter();
 	
+	virtual void Tick(float DeltaSeconds) override;
 
 protected:
 
@@ -62,5 +63,23 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+protected:
+	void One();
+	void Two();
+
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
+	bool bGo;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
+	bool bArrive;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
+	int32 CurrentBoard;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
+	int32 DestBoard;
+
 };
 

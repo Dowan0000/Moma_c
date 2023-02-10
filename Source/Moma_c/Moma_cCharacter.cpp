@@ -14,7 +14,10 @@
 //////////////////////////////////////////////////////////////////////////
 // AMoma_cCharacter
 
-AMoma_cCharacter::AMoma_cCharacter()
+AMoma_cCharacter::AMoma_cCharacter():
+	bGo(false), bArrive(false),
+	CurrentBoard(1), DestBoard(1)
+
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -49,6 +52,28 @@ AMoma_cCharacter::AMoma_cCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+}
+
+void AMoma_cCharacter::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	//UE_LOG(LogTemp, Warning, TEXT("!@$"));
+
+	if (!bGo) return;
+
+	if (bArrive)
+	{
+		bGo = false;
+		bArrive = false;
+		return;
+	}
+	else
+	{
+		AddMovementInput(GetActorForwardVector(), DeltaSeconds * 50.f);
+	}
+
+
 }
 
 void AMoma_cCharacter::BeginPlay()
@@ -86,29 +111,32 @@ void AMoma_cCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 
 	}
 
+	PlayerInputComponent->BindAction(TEXT("One"), EInputEvent::IE_Pressed, this, &AMoma_cCharacter::One);
+	PlayerInputComponent->BindAction(TEXT("Two"), EInputEvent::IE_Pressed, this, &AMoma_cCharacter::Two);
 }
 
 void AMoma_cCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
-	FVector2D MovementVector = Value.Get<FVector2D>();
 
-	if (Controller != nullptr)
-	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+	//FVector2D MovementVector = Value.Get<FVector2D>();
 
-		// get forward vector
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	
-		// get right vector 
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+	//if (Controller != nullptr)
+	//{
+	//	// find out which way is forward
+	//	const FRotator Rotation = Controller->GetControlRotation();
+	//	const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// add movement 
-		AddMovementInput(ForwardDirection, MovementVector.Y);
-		AddMovementInput(RightDirection, MovementVector.X);
-	}
+	//	// get forward vector
+	//	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+	//
+	//	// get right vector 
+	//	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+
+	//	// add movement 
+	//	AddMovementInput(ForwardDirection, MovementVector.Y);
+	//	AddMovementInput(RightDirection, MovementVector.X);
+	//}
 }
 
 void AMoma_cCharacter::Look(const FInputActionValue& Value)
@@ -124,6 +152,18 @@ void AMoma_cCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+// Move
+void AMoma_cCharacter::One()
+{
+	DestBoard += 1;
+	bGo = true;
 
+}
 
+void AMoma_cCharacter::Two()
+{
+	DestBoard += 2;
+	bGo = true;
+
+}
 
