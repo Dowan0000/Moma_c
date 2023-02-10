@@ -81,5 +81,11 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
 	int32 DestBoard;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
+	class AMainBoard* BoardObj;
+
+public:
+	FORCEINLINE void SetCurrentBoard(AMainBoard* CurBoard) { BoardObj = CurBoard; }
+
 };
 

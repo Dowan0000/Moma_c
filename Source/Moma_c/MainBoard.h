@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "FST_City.h"
 #include "MainBoard.generated.h"
 
 UCLASS()
@@ -47,4 +48,9 @@ private:
 
 	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	UUserWidget* ArriveWidget;
+
+	FST_City* City;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 CityRowName;
 };

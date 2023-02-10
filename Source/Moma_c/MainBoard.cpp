@@ -49,6 +49,8 @@ void AMainBoard::BoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 		if (Character->CurrentBoard == Character->DestBoard)
 		{
 			Character->bArrive = true;
+			Character->SetCurrentBoard(this);
+			
 			ArriveAtBoard();
 		}
 	}
