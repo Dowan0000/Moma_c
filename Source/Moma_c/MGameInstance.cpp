@@ -3,19 +3,34 @@
 
 #include "MGameInstance.h"
 #include "MHUD.h"
+#include "Moma_cCharacter.h"
 
-void UMGameInstance::BuyCity(FST_City CurCity)
+void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 {
-	if (Possessions >= CurCity.Price)
+	if(MCharacter == nullptr)
+		MCharacter = Cast<AMoma_cCharacter>(Character);
+
+	if (MCharacter)
 	{
-		Possessions -= CurCity.Price;
+		if (Ground == nullptr) return;
+		
+		FVector Location = MCharacter->GetActorLocation() + MCharacter->GetActorRightVector() * -60.f;
+		Location = Location + FVector(0.f, 0.f, -90.f);
 
-		if(MHUD == nullptr)
-			MHUD = Cast<AMHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+		GetWorld()->SpawnActor<AActor>(Ground, Location, MCharacter->GetActorRotation());		
 
-		if (MHUD)
+		if (Possessions >= CurCity.Price)
 		{
-			MHUD->UpdatePossessionUI();
+			Possessions -= CurCity.Price;
+
+			if (MHUD == nullptr)
+				MHUD = Cast<AMHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+			if (MHUD)
+			{
+				MHUD->UpdatePossessionUI();
+			}
 		}
 	}
+	
 }

@@ -78,4 +78,5 @@ void AMainBoard::ArriveAtBoard_Implementation()
 			GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(true);*/
 		}
 	}
+
 }

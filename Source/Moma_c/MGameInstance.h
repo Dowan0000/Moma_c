@@ -17,7 +17,7 @@ class MOMA_C_API UMGameInstance : public UGameInstance
 	
 protected:
 	UFUNCTION(BlueprintCallable)
-	void BuyCity(FST_City CurCity);
+	void BuyCity(FST_City CurCity, ACharacter* Character);
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Possessions", meta = (AllowPrivateAccess = "true"))
@@ -25,4 +25,11 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class AMHUD* MHUD;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class AMoma_cCharacter* MCharacter;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class AActor> Ground;
+
 };
