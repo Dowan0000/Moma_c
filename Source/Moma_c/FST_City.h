@@ -18,4 +18,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
 	int32 Price;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+		FString State;
+
 };

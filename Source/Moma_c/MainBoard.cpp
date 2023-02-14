@@ -73,9 +73,9 @@ void AMainBoard::ArriveAtBoard_Implementation()
 		{
 			ArriveWidget->AddToViewport();
 
-			FInputModeUIOnly UIMode;
+			/*FInputModeUIOnly UIMode;
 			GetWorld()->GetFirstPlayerController()->SetInputMode(UIMode);
-			GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(true);
+			GetWorld()->GetFirstPlayerController()->SetShowMouseCursor(true);*/
 		}
 	}
 }
