@@ -34,3 +34,26 @@ void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 	}
 	
 }
+UMGameInstance::UMGameInstance()
+{
+    FString CsvDataPath = TEXT("DataTable'/Game/Data/FortuneCard.FortuneCard'");
+    static ConstructorHelpers::FObjectFinder<UDataTable> DT_FortuneCard(*CsvDataPath);
+    if (DT_FortuneCard.Succeeded())
+	{
+
+		CsvDataTable = DT_FortuneCard.Object;
+	
+		
+	}
+	
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("DataFail"));
+	}
+}
+
+
+FCsvData* UMGameInstance::GetRowData(int32 RowName)
+{
+	return CsvDataTable->FindRow<FCsvData>(*FString::FromInt(RowName),TEXT(""));
+}
