@@ -16,7 +16,26 @@ public:
 	FString CityName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
-	int32 Price;
+	int32 LandPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+	int32 FirstPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+	int32 SecondPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+	int32 ThirdPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+	int32 LandMarkPrice;
+
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
+		FString Color;
+
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "CityInformation")
 		FString State;

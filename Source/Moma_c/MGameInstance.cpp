@@ -19,9 +19,9 @@ void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 
 		GetWorld()->SpawnActor<AActor>(Ground, Location, MCharacter->GetActorRotation());		
 
-		if (Possessions >= CurCity.Price)
+		if (Possessions >= CurCity.LandPrice)
 		{
-			Possessions -= CurCity.Price;
+			Possessions -= CurCity.LandPrice;
 
 			if (MHUD == nullptr)
 				MHUD = Cast<AMHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
