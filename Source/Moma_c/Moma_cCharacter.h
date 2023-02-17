@@ -67,7 +67,7 @@ public:
 protected:
 	void One();
 	void Two();
-
+	
 public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
 	bool bGo;
@@ -83,6 +83,9 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
 	class AMainBoard* BoardObj;
+
+public:
+	void Go(int Num);
 
 public:
 	FORCEINLINE void SetCurrentBoard(AMainBoard* CurBoard) { BoardObj = CurBoard; }

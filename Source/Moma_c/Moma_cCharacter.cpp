@@ -168,3 +168,9 @@ void AMoma_cCharacter::Two()
 
 }
 
+void AMoma_cCharacter::Go(int Num)
+{
+	DestBoard += Num;
+	bGo = true;
+}
+
