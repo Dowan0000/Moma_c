@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/PrimitiveComponent.h"
 #include "Moma_cCharacter.h"
+#include "DrawDebugHelpers.h"
 
 // Sets default values
 ADiceCheckArea::ADiceCheckArea()
@@ -43,7 +44,7 @@ void ADiceCheckArea::CheckDices()
 			{
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Orange , FString::Printf(TEXT(" %s:Dice1Name"), *DiceArray[i]->GetName()));
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Orange , TEXT("DiceLocation1"));
-				LinetraceDice(FVector(loc.X , loc.Y , loc.Z + 50) , loc , DiceArray[i]);
+				LinetraceDice(FVector(loc.X , loc.Y , loc.Z + 200) , loc , DiceArray[i]);
 			}
 		}
 		if (i == 1)
@@ -53,7 +54,7 @@ void ADiceCheckArea::CheckDices()
 			{
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Orange , FString::Printf(TEXT(" %s:Dice2Name") ,*DiceArray[i]->GetName()));
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Orange , TEXT("DiceLocation2"));
-				LinetraceDice(FVector(loc2.X , loc2.Y , loc2.Z + 50) , loc2 , DiceArray[i]);
+				LinetraceDice(FVector(loc2.X , loc2.Y , loc2.Z + 200) , loc2 , DiceArray[i]);
 			}
 		}
 	}
@@ -69,6 +70,9 @@ void ADiceCheckArea::LinetraceDice(FVector StartLoc , FVector EndLoc , AActor* D
 
 	bool IsHit = GetWorld()->LineTraceSingleByChannel
 	(Hit , StartLocation , EndLocation , ECollisionChannel::ECC_Visibility , params);
+	
+	DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Black, false, 10.f, 0U, 10.f);
+	
 	if (IsHit)
 	{
 		if (Dice == Hit.GetActor())
@@ -83,7 +87,7 @@ void ADiceCheckArea::LinetraceDice(FVector StartLoc , FVector EndLoc , AActor* D
 
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Purple , FString::Printf(TEXT(" Hit.GetComponent()->ComponentTags.Num(): %d") , Hit.GetComponent()->ComponentTags.Num()));
 				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Purple , FString::Printf(TEXT(" %s:Tag") , *Hit.GetComponent()->ComponentTags[j].ToString()));
-				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Green , FString::Printf(TEXT(" %d:Num") , FCString::Atoi(*Hit.GetComponent()->ComponentTags[j].ToString())));
+				GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Black , FString::Printf(TEXT(" %d:Num") , FCString::Atoi(*Hit.GetComponent()->ComponentTags[j].ToString())));
 				Character = Cast<AMoma_cCharacter>(GetWorld()->GetFirstPlayerController()->GetPawn());
 				if(Character)
 				{
