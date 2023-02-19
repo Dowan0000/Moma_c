@@ -55,12 +55,17 @@ public:
 		UBoxComponent* BoxComponent;
 public:
 
-	UFUNCTION(BlueprintCallable)
-		void CheckPlane();
+	UFUNCTION(Server , Reliable , BlueprintCallable)
+	void ReqCheckPlane();
 
-	UFUNCTION(BlueprintCallable)
-		void LocationFix();
+	UFUNCTION(NetMulticast , Reliable)
+	void ResCheckPlane();
 
+	UFUNCTION(Server , Reliable)
+	void ReqLocationFix();
+
+	UFUNCTION(NetMulticast , Reliable)
+	void ResLocationFix();
 
 
 

@@ -109,7 +109,19 @@ void ADice::Tick(float DeltaTime)
 
 }
 
-void ADice::CheckPlane()
+
+
+void ADice::ReqLocationFix_Implementation()
+{
+	ResLocationFix();
+}
+
+void ADice::ReqCheckPlane_Implementation()
+{
+	ResCheckPlane();
+}
+
+void ADice::ResCheckPlane_Implementation()
 {
 	FHitResult Hit;
 	FCollisionQueryParams params(NAME_None , false , this);
@@ -127,14 +139,14 @@ void ADice::CheckPlane()
 
 		GEngine->AddOnScreenDebugMessage(-1 , 10 , FColor::Magenta , FString::Printf(TEXT(" %s:actor") , *Hit.GetActor()->GetName()));
 		BoxComponent->AddRelativeRotation(FRotator(20 , 10 , 20));
-		BoxComponent->AddImpulseAtLocation(GetActorLocation() , GetActorLocation() * (Hit.GetActor()->GetActorUpVector() * 7));
+		BoxComponent->AddImpulseAtLocation(GetActorLocation() , GetActorLocation() * (Hit.GetActor()->GetActorUpVector() * 100));
 
-		//GetWorldTimerManager().SetTimer(Handle , this , &AExDice::LocationFix , 5.f);
+		GetWorldTimerManager().SetTimer(Handle , this , &ADice::ReqLocationFix , 7.f);
 
 	}
 }
 
-void ADice::LocationFix()
+void ADice::ResLocationFix_Implementation()
 {
 	UE_LOG(LogTemp , Warning , TEXT("8888888888888888888"));
 
