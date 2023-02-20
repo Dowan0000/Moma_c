@@ -2,6 +2,7 @@
 
 
 #include "MainBoard.h"
+#include "Kismet/KismetMathLibrary.h"
 #include "MGameInstance.h"
 #include "Components/BoxComponent.h"
 #include "Moma_cCharacter.h"
@@ -15,12 +16,21 @@ AMainBoard::AMainBoard()
 
 	Board = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Board"));
 	CollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionBox"));
+	Mesh = LoadObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube'"));
+	Material = LoadObject<UMaterialInterface>(nullptr, TEXT("Material'/Game/Material/LandColor_Inst.LandColor_Inst'"));
 
-	//Board->SetupAttachment(RootComponent);
-	SetRootComponent(Board);
-	CollisionBox->SetupAttachment(RootComponent);
 
-	
+	Board->SetStaticMesh(Mesh);
+
+
+	FName ParameterName = FName("ColorParameterName");
+
+	//FLinearColor NewParameterValue = FLinearColor(1.0f, 0.0f, 0.0f, 1.0f); // Red color
+
+	FVector ChangeColor = FVector(FMath::Lerp(PrevColor.X, NextColor.X, RunningTime), FMath::Lerp(PrevColor.Y, NextColor.Y, RunningTime), FMath::Lerp(PrevColor.Z, NextColor.Z, RunningTime));
+
+	Board->SetVectorParameterValueOnMaterials(ParameterName,ChangeColor);
+
 
 
 }
@@ -29,6 +39,8 @@ AMainBoard::AMainBoard()
 void AMainBoard::BeginPlay()
 {
 	Super::BeginPlay();
+
+	Board->SetMaterial(0,Material);
 	
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AMainBoard::BoxBeginOverlap);
 
@@ -64,6 +76,19 @@ void AMainBoard::BeginPlay()
 void AMainBoard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	RunningTime += DeltaTime;
+
+    FVector ChangeColor = FVector(FMath::Lerp(PrevColor.X, NextColor.X, RunningTime), FMath::Lerp(PrevColor.Y, NextColor.Y, RunningTime), FMath::Lerp(PrevColor.Z, NextColor.Z, RunningTime));
+    Board->SetVectorParameterValueOnMaterials(TEXT("Color"), ChangeColor);
+
+    if (RunningTime >= 1.0f)
+    {
+        PrevColor = NextColor;
+        NextColor = FVector(FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f));
+        RunningTime = 0.0f;
+	}
+
 
 }
 
@@ -109,4 +134,3 @@ void AMainBoard::ArriveAtBoard_Implementation()
 	}
 
 }
-

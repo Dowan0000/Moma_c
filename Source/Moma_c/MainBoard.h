@@ -34,11 +34,28 @@ public:
 	void ArriveAtBoard();
 
 
+	float RunningTime;
+	FVector PrevColor;
+	FVector NextColor;
+
+	 
+
+
 	
 
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* Board;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UStaticMesh* Mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UMaterialInterface* Material;
+
+
+
+
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UBoxComponent* CollisionBox;
