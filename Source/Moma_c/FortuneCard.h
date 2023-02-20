@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Engine/DataTable.h"
 #include "GameFramework/Actor.h"
+
 #include "FortuneCard.generated.h"
 
 USTRUCT(BlueprintType)

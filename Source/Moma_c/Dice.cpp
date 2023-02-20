@@ -16,12 +16,14 @@ ADice::ADice()
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	BoxComponent->SetWorldScale3D(FVector(1.25f , 1.25f , 1.25f));
 	RootComponent = BoxComponent;
+
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh1(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh2(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh3(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh4(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh5(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
 	static ConstructorHelpers::FObjectFinder<UStaticMesh>Cubemesh6(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Shapes/Shape_Cube.Shape_Cube'"));
+
 	Cube1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube1"));
 	Cube2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube2"));
 	Cube3 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Cube3"));
@@ -89,7 +91,7 @@ void ADice::BeginPlay()
 {
 	Super::BeginPlay();
 	UE_LOG(LogTemp , Warning , TEXT("asd") , 10);
-	EventDelegate.BindUFunction(this , "LocationFix");
+	//EventDelegate.BindUFunction(this , "LocationFix");
 
 
 	UGameplayStatics::GetAllActorsWithTag(GetWorld() , TEXT("Dice") , FoundDices2);
