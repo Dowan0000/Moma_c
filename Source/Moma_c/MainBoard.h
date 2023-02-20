@@ -33,6 +33,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent)
 	void ArriveAtBoard();
 
+
+	
+
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent* Board;
@@ -53,4 +56,27 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
 	int32 CityRowName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 NewLandPrice;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 NewFirstPrice;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 NewSecondPrice;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 NewThirdPrice;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	int32 NewLandMarkPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
+	FString NewCityName;
+
+
+	
+
+
+	
+	
+
+
 };

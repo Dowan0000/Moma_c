@@ -40,10 +40,15 @@ public:
 	UMGameInstance();
 	
 	
-	FCsvData* GetRowData(int32 RowName);
+	FCsvData* GetFortuneRowData(int32 RowName);
+
+	FST_City* GetBoardRowData(int32 RowName);
 	
 	UPROPERTY()
-	UDataTable* CsvDataTable;
+	UDataTable* CsvFortuneDataTable;
+
+	UPROPERTY()
+	UDataTable* CsvBoardDataTable;
 
 
 

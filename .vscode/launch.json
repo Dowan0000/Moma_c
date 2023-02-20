@@ -4,7 +4,7 @@
 		{
 			"name": "Launch Moma_c (Debug)",
 			"request": "launch",
-			"program": "/Users/yun/Moma/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
+			"program": "/Users/yun/Moma_c/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
 			"preLaunchTask": "Moma_c Mac Debug Build",
 			"args": [
 			],
@@ -14,7 +14,7 @@
 		{
 			"name": "Launch Moma_c (DebugGame)",
 			"request": "launch",
-			"program": "/Users/yun/Moma/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
+			"program": "/Users/yun/Moma_c/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
 			"preLaunchTask": "Moma_c Mac DebugGame Build",
 			"args": [
 			],
@@ -24,7 +24,7 @@
 		{
 			"name": "Launch Moma_c (Development)",
 			"request": "launch",
-			"program": "/Users/yun/Moma/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
+			"program": "/Users/yun/Moma_c/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
 			"preLaunchTask": "Moma_c Mac Development Build",
 			"args": [
 			],
@@ -34,7 +34,7 @@
 		{
 			"name": "Launch Moma_c (Test)",
 			"request": "launch",
-			"program": "/Users/yun/Moma/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
+			"program": "/Users/yun/Moma_c/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
 			"preLaunchTask": "Moma_c Mac Test Build",
 			"args": [
 			],
@@ -44,7 +44,7 @@
 		{
 			"name": "Launch Moma_c (Shipping)",
 			"request": "launch",
-			"program": "/Users/yun/Moma/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
+			"program": "/Users/yun/Moma_c/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
 			"preLaunchTask": "Moma_c Mac Shipping Build",
 			"args": [
 			],
@@ -57,7 +57,7 @@
 			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor-Mac-Debug.app/Contents/MacOS/UnrealEditor-Mac-Debug",
 			"preLaunchTask": "Moma_cEditor Mac Debug Build",
 			"args": [
-				"/Users/yun/Moma/Moma_c.uproject"
+				"/Users/yun/Moma_c/Moma_c.uproject"
 			],
 			"cwd": "/Users/Shared/Epic Games/UE_5.1",
 			"type": "lldb"
@@ -68,7 +68,7 @@
 			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor-Mac-DebugGame.app/Contents/MacOS/UnrealEditor-Mac-DebugGame",
 			"preLaunchTask": "Moma_cEditor Mac DebugGame Build",
 			"args": [
-				"/Users/yun/Moma/Moma_c.uproject"
+				"/Users/yun/Moma_c/Moma_c.uproject"
 			],
 			"cwd": "/Users/Shared/Epic Games/UE_5.1",
 			"type": "lldb"
@@ -79,7 +79,7 @@
 			"program": "/Users/Shared/Epic Games/UE_5.1/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor",
 			"preLaunchTask": "Moma_cEditor Mac Development Build",
 			"args": [
-				"/Users/yun/Moma/Moma_c.uproject"
+				"/Users/yun/Moma_c/Moma_c.uproject"
 			],
 			"cwd": "/Users/Shared/Epic Games/UE_5.1",
 			"type": "lldb"
@@ -92,7 +92,7 @@
 			"args": [
 				"-projectfiles",
 				"-vscode",
-				"-project=/Users/yun/Moma/Moma_c.uproject",
+				"-project=/Users/yun/Moma_c/Moma_c.uproject",
 				"-game",
 				"-engine"
 			],

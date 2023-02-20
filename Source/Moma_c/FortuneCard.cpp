@@ -19,7 +19,7 @@ void AFortuneCard::BeginPlay()
 
 	UMGameInstance *gameInstance = Cast<UMGameInstance>(GetGameInstance());
 	int32 RandomInt = FMath::RandRange(1, 14);
-	CsvData = gameInstance->GetRowData(RandomInt);
+	CsvData = gameInstance->GetFortuneRowData(RandomInt);
 
 	if (CsvData)
 	{

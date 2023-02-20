@@ -2,6 +2,7 @@
 
 
 #include "MainBoard.h"
+#include "MGameInstance.h"
 #include "Components/BoxComponent.h"
 #include "Moma_cCharacter.h"
 #include "Blueprint/UserWidget.h"
@@ -19,6 +20,8 @@ AMainBoard::AMainBoard()
 	SetRootComponent(Board);
 	CollisionBox->SetupAttachment(RootComponent);
 
+	
+
 
 }
 
@@ -28,6 +31,32 @@ void AMainBoard::BeginPlay()
 	Super::BeginPlay();
 	
 	CollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AMainBoard::BoxBeginOverlap);
+
+	UMGameInstance *gameInstance = Cast<UMGameInstance>(GetGameInstance());
+	
+	City = gameInstance->GetBoardRowData(CityRowName);
+
+	if (City)
+	{
+		NewCityName = City->CityName;
+
+		NewLandPrice = City->LandPrice;
+
+		NewFirstPrice = City->FirstPrice;
+
+		NewSecondPrice = City->SecondPrice;
+
+		NewThirdPrice = City->ThirdPrice;
+
+		NewLandMarkPrice = City->LandMarkPrice;
+		
+	}
+	else
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("BoardFailed")));
+	}
+
+	
 
 }
 
@@ -54,7 +83,7 @@ void AMainBoard::BoxBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 			ArriveAtBoard();
 		}
 	}
-
+	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("%s: %d"),*NewCityName,NewLandPrice));
 	RotationCharacter();
 }
 
@@ -80,3 +109,4 @@ void AMainBoard::ArriveAtBoard_Implementation()
 	}
 
 }
+

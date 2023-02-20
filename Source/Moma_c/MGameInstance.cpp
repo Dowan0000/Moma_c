@@ -36,24 +36,47 @@ void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 }
 UMGameInstance::UMGameInstance()
 {
-    FString CsvDataPath = TEXT("DataTable'/Game/Data/FortuneCard.FortuneCard'");
-    static ConstructorHelpers::FObjectFinder<UDataTable> DT_FortuneCard(*CsvDataPath);
+    FString CsvFortuneDataPath = TEXT("DataTable'/Game/Data/FortuneCard.FortuneCard'");
+    static ConstructorHelpers::FObjectFinder<UDataTable> DT_FortuneCard(*CsvFortuneDataPath);
     if (DT_FortuneCard.Succeeded())
 	{
 
-		CsvDataTable = DT_FortuneCard.Object;
+		CsvFortuneDataTable = DT_FortuneCard.Object;
 	
 		
 	}
 	
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("DataFail"));
+		UE_LOG(LogTemp, Warning, TEXT("CardDataFail"));
 	}
+
+	FString CsvBoardDataPath = TEXT("/Script/Engine.DataTable'/Game/Data/DT_City.DT_City'");
+    static ConstructorHelpers::FObjectFinder<UDataTable> DT_Board(*CsvBoardDataPath);
+    if (DT_Board.Succeeded())
+	{
+
+		CsvBoardDataTable = DT_Board.Object;
+	
+		
+	}
+	
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("BoardDataFail"));
+	}
+
+
+
 }
 
 
-FCsvData* UMGameInstance::GetRowData(int32 RowName)
+FCsvData* UMGameInstance::GetFortuneRowData(int32 RowName)
 {
-	return CsvDataTable->FindRow<FCsvData>(*FString::FromInt(RowName),TEXT(""));
+	return CsvFortuneDataTable->FindRow<FCsvData>(*FString::FromInt(RowName),TEXT(""));
+}
+
+FST_City* UMGameInstance::GetBoardRowData(int32 RowName)
+{
+	return CsvBoardDataTable->FindRow<FST_City>(*FString::FromInt(RowName),TEXT(""));
 }
