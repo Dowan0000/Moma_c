@@ -88,6 +88,34 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CityInformaition", meta = (AllowPrivateAccess = "true"))
 	FString NewCityName;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Blue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Black;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Purple;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Yellow;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Red;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector White;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Orange;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector SkyBlue;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Color", meta = (AllowPrivateAccess = "true"))
+	FVector Green;
+
+
 
 	
 

@@ -31,8 +31,15 @@ AMainBoard::AMainBoard()
 
 	Board->SetVectorParameterValueOnMaterials(ParameterName,ChangeColor);
 
-
-
+	Black = FVector(0,0,0);
+	SkyBlue = FVector(0.1,0.3,0.5);
+	Blue =  FVector(0,0,1);
+	Red = FVector(1,0,0);
+	Purple = FVector(0.3,0.1,0.7);
+	Orange = FVector(0.8,0.3,0.2);
+	Yellow = FVector(0.8,0.4,0);
+	Green = FVector(0.1,0.8,0.1);
+	White = FVector(1,1,1);
 }
 
 // Called when the game starts or when spawned
@@ -61,6 +68,8 @@ void AMainBoard::BeginPlay()
 		NewThirdPrice = City->ThirdPrice;
 
 		NewLandMarkPrice = City->LandMarkPrice;
+
+
 		
 	}
 	else
@@ -68,8 +77,56 @@ void AMainBoard::BeginPlay()
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, FString::Printf(TEXT("BoardFailed")));
 	}
 
+	if(City->Color == "Black")
+	{
+		 Board->SetVectorParameterValueOnMaterials(TEXT("Color"), Black);
+	}
+	else if(City->Color == "SkyBlue")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), SkyBlue);
+
+	}
+	else if(City->Color == "White")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), White);
+
+	}
+	else if(City->Color == "Blue")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"),Blue);
+	}
+	else if(City->Color == "Red")
+	{		
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), Red);
+
+	}
+	else if(City->Color == "Purple")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), Purple);
+	}
+	else if(City->Color == "Orange")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"),Orange);
+	}
+	else if(City->Color == "Yellow")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), Yellow);
+	}
+	else if(City->Color == "Green")
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"), Green);
+	}
+	else
+	{
+		Board->SetVectorParameterValueOnMaterials(TEXT("Color"),FVector(0.9,0.4,0.2));
+	}
+	
+	
+	
 	
 
+
+	 
 }
 
 // Called every frame
@@ -77,17 +134,18 @@ void AMainBoard::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	RunningTime += DeltaTime;
+	// RunningTime += DeltaTime;
 
-    FVector ChangeColor = FVector(FMath::Lerp(PrevColor.X, NextColor.X, RunningTime), FMath::Lerp(PrevColor.Y, NextColor.Y, RunningTime), FMath::Lerp(PrevColor.Z, NextColor.Z, RunningTime));
-    Board->SetVectorParameterValueOnMaterials(TEXT("Color"), ChangeColor);
+    // FVector ChangeColor = FVector(FMath::Lerp(PrevColor.X, NextColor.X, RunningTime), FMath::Lerp(PrevColor.Y, NextColor.Y, RunningTime), FMath::Lerp(PrevColor.Z, NextColor.Z, RunningTime));
+   
+ 	// Board->SetVectorParameterValueOnMaterials(TEXT("Color"), FVector(0.1,0.3,0.5));
 
-    if (RunningTime >= 1.0f)
-    {
-        PrevColor = NextColor;
-        NextColor = FVector(FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f));
-        RunningTime = 0.0f;
-	}
+    // if (RunningTime >= 1.0f)
+    // {
+    //     PrevColor = NextColor;
+    //     NextColor = FVector(FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f), FMath::RandRange(0.0f, 1.0f));
+    //     RunningTime = 0.0f;
+	// }
 
 
 }
