@@ -4,6 +4,7 @@
 #include "MGameInstance.h"
 #include "MHUD.h"
 #include "Moma_cCharacter.h"
+#include "Net/UnrealNetwork.h"
 
 void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 {
@@ -14,25 +15,35 @@ void UMGameInstance::BuyCity(FST_City CurCity, ACharacter* Character)
 	{
 		if (Ground == nullptr) return;
 		
-		FVector Location = MCharacter->GetActorLocation() + MCharacter->GetActorRightVector() * -60.f;
-		Location = Location + FVector(0.f, 0.f, -90.f);
-
-		GetWorld()->SpawnActor<AActor>(Ground, Location, MCharacter->GetActorRotation());		
-
-		if (Possessions >= CurCity.LandPrice)
-		{
-			Possessions -= CurCity.LandPrice;
-
-			if (MHUD == nullptr)
-				MHUD = Cast<AMHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
-
-			if (MHUD)
-			{
-				MHUD->UpdatePossessionUI();
-			}
-		}
+		ReqBuyCity(CurCity);
+		
+		MCharacter->ReqBuyCity(CurCity);
 	}
 	
+}
+void UMGameInstance::ReqBuyCity_Implementation(FST_City CurCity)
+{
+	ResBuyCity(CurCity);
+}
+void UMGameInstance::ResBuyCity_Implementation(FST_City CurCity)
+{
+	/*FVector Location = MCharacter->GetActorLocation() + MCharacter->GetActorRightVector() * -60.f;
+	Location = Location + FVector(0.f, 0.f, -90.f);
+
+	if (MCharacter->Possession >= CurCity.LandPrice)
+	{
+		MCharacter->Possession -= CurCity.LandPrice;
+		
+		GetWorld()->SpawnActor<AActor>(Ground, Location, MCharacter->GetActorRotation());
+
+		if (MHUD == nullptr)
+			MHUD = Cast<AMHUD>(GetWorld()->GetFirstPlayerController()->GetHUD());
+
+		if (MHUD)
+		{
+			MHUD->UpdatePossessionUI();
+		}
+	}*/
 }
 UMGameInstance::UMGameInstance()
 {

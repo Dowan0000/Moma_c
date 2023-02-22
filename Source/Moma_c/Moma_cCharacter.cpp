@@ -11,13 +11,16 @@
 #include "EnhancedInputSubsystems.h"
 #include "MainBoard.h"
 #include "Kismet/GameplayStatics.h"
+#include "Net/UnrealNetwork.h"
+#include "Blueprint/UserWidget.h"
 
 //////////////////////////////////////////////////////////////////////////
 // AMoma_cCharacter
 
 AMoma_cCharacter::AMoma_cCharacter():
 	bGo(false), bArrive(false),
-	CurrentBoard(1), DestBoard(1)
+	CurrentBoard(1), DestBoard(1),
+	Possession(2000)
 
 {
 	// Set size for collision capsule
@@ -90,6 +93,8 @@ void AMoma_cCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -114,6 +119,14 @@ void AMoma_cCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerIn
 
 	PlayerInputComponent->BindAction(TEXT("One"), EInputEvent::IE_Pressed, this, &AMoma_cCharacter::One);
 	PlayerInputComponent->BindAction(TEXT("Two"), EInputEvent::IE_Pressed, this, &AMoma_cCharacter::Two);
+}
+
+void AMoma_cCharacter::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(AMoma_cCharacter, Possession);
+
 }
 
 void AMoma_cCharacter::Move(const FInputActionValue& Value)
@@ -174,3 +187,12 @@ void AMoma_cCharacter::Go(int Num)
 	bGo = true;
 }
 
+void AMoma_cCharacter::ReqBuyCity_Implementation(FST_City CurCity)
+{
+	ResBuyCity(CurCity);
+}
+
+void AMoma_cCharacter::ResBuyCity_Implementation(FST_City CurCity)
+{
+	Possession -= CurCity.LandPrice;
+}

@@ -23,10 +23,13 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void BuyCity(FST_City CurCity, ACharacter* Character);
 
-private:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Possessions", meta = (AllowPrivateAccess = "true"))
-	int32 Possessions = 100;
+	UFUNCTION(Server, Reliable)
+	void ReqBuyCity(FST_City CurCity);
 
+	UFUNCTION(NetMulticast, Reliable)
+	void ResBuyCity(FST_City CurCity);
+
+private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class AMHUD* MHUD;
 

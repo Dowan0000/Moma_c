@@ -84,8 +84,18 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movements")
 	class AMainBoard* BoardObj;
 
+	UPROPERTY(Replicated, VisibleAnywhere, BlueprintReadWrite, Category = "Possession")
+	int32 Possession;
+
+
 public:
 	void Go(int Num);
+
+	UFUNCTION(Server, Reliable)
+	void ReqBuyCity(FST_City CurCity);
+
+	UFUNCTION(NetMulticast, Reliable)
+	void ResBuyCity(FST_City CurCity);
 
 public:
 	FORCEINLINE void SetCurrentBoard(AMainBoard* CurBoard) { BoardObj = CurBoard; }

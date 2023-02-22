@@ -19,6 +19,7 @@ AMainBoard::AMainBoard()
 	Mesh = LoadObject<UStaticMesh>(nullptr, TEXT("StaticMesh'/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube'"));
 	Material = LoadObject<UMaterialInterface>(nullptr, TEXT("Material'/Game/Material/LandColor_Inst.LandColor_Inst'"));
 
+	CollisionBox->SetBoxExtent(FVector(50.f, 50.f, 20.f));
 
 	Board->SetStaticMesh(Mesh);
 
